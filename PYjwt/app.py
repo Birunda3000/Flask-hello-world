@@ -1,51 +1,3 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_restx import Api, Resource, fields
-import os
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'storage.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-api = Api(app)
-db = SQLAlchemy(app)
-
-
-
-@api.route('/hello')
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
 from flask import Flask, Response, request, current_app, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -56,7 +8,6 @@ import jwt
 
 import os.path
 basedir = os.path.abspath(os.path.dirname(__file__))
-
 
 DEBUG = True
 app = Flask(__name__)
@@ -91,7 +42,7 @@ def jwt_required(f):
         if 'Bearer' not in token:
             return gera_response(401, "token", {}, "Token inválido")    
         try:
-            token_pure = token.replace('token_key ', '')
+            token_pure = token.replace('Bearer ', '')
             decoded = jwt.decode(token_pure, app.config['SECRET_KEY'], algorithms=['HS256'])
             current_user = Usuario.query.get(decoded['id'])#just search for the user with the id
         except:
@@ -206,4 +157,4 @@ def gera_response(status, nome_do_conteudo, conteudo, mensagem=False):
     return Response(json.dumps(body), status=status, mimetype="application/json")
 
 if __name__ == "__main__":
-    app.run(debug=True)'''
+    app.run(debug=True)
