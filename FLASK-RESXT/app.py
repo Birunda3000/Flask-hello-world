@@ -22,29 +22,6 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 '''
 from flask import Flask, Response, request, current_app, jsonify
 from flask_sqlalchemy import SQLAlchemy
