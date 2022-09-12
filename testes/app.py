@@ -12,7 +12,13 @@ basedir=os.path.dirname(os.path.realpath(__file__))
 
 app=Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///'+os.path.join(basedir,'users.db')
+#app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///'+os.path.join(basedir,'users.db')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/hospital"
+
+#'postgresql://postgres:postgres@localhost:5432/postgres'
+#    postgres_local_base = 'postgresql+psycopg2://postgres:postgres@localhost/hospital'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.config['SQLALCHEMY_ECHO']=True
 app.config['SECRET_KEY'] = 'secret'
